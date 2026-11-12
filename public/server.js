@@ -1,2 +1,0 @@
-const TELEGRAM_BOT_TOKEN = '9150805950:AAFQxMTrQRFBbfqfgQPlNqvqeWREFOqGGKc';
-const TELEGRAM_CHAT_ID = '1875307475'; // keep your chat ID
